@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button class="start">set canvas size</button>
+    <div class="container"></div>
+    <script>
+      const container = document.querySelector("div");
+      let inputUser = "";
+
+      const start = document.querySelector("button");
+      start.addEventListener("click", () => {
+        let input = prompt("Enter the number of squares per side: ");
+        if (
+          (input && !isNaN(parseInt(input))) ||
+          (parseInt(input) <= 100 && parseInt(input) > 0)
+        ) {
+          if (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+          console.log(`Input in promptUser: ${input}`);
+          createCanvas(input);
+        } else {
+          alert("Not a valid input. Please enter a number between 1 and 100");
+        }
+      });
+
+      function createCanvas(input) {
+        let num = parseInt(input);
+        const width = num * num;
+        const canvas = document.createElement("div");
+        canvas.className = "canvas";
+        container.appendChild(canvas);
+        canvas.style.width = `${num * 10}px`;
+
+        for (let i = 0; i < width; i++) {
+          let square = document.createElement("div");
+          square.className = "square";
+          canvas.appendChild(square);
+          square.addEventListener("mouseover", () => {
+            square.setAttribute("style", "background-color: #000;");
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
