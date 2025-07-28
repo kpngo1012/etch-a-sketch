@@ -30,6 +30,10 @@
         }
       });
 
+      function randomize() {
+        return Math.floor(Math.random() * 256);
+      }
+
       function createCanvas(input) {
         let num = parseInt(input);
         const width = num * num;
@@ -40,10 +44,12 @@
 
         for (let i = 0; i < width; i++) {
           let square = document.createElement("div");
+          let alpha = 10;
           square.className = "square";
           canvas.appendChild(square);
           square.addEventListener("mouseover", () => {
-            square.setAttribute("style", "background-color: #000;");
+            square.style.backgroundColor = `rgba(${randomize()}, ${randomize()}, ${randomize()}, ${alpha}%)`;
+            alpha += 10;
           });
         }
       }
